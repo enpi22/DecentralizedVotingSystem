@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>To Do Decentralized Application</title>
+    <script src="main.js"></script>
+    <script src="https://cdn.ethers.io/lib/ethers-5.7.1.umd.min.js" type="application/javascript"></script>
+    <title>Centered Form</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+        }
+
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        button {
+            background-color: #12e4c1;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #000000;
+        }
+
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .card {
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 50px;
+            border-radius: 8px;
+            width: 300px;
+            text-align: center;
+			margin-bottom: 60px;
+            transition: background-color 0.3s ease;
+        }
+
+        .card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .card:hover {
+            background-color: #e2dddd;
+        }
+
+
+        .vote-btn {
+            display: inline !important;
+            background-color: #12e4c1;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            margin-right: 4px;
+        }
+
+        .vote-btn:hover {
+            background-color: #289381;
+        }
+
+        .selected {
+            background-color: #bbbbbb;
+        }
+
+        .header {
+            background-color: #6343bc;
+            color: #fff;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            margin-left: -20px;
+            margin-right: -20px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+        }
+
+        .flex-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .flex-col {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        #remainingTime {
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        #remaining {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .cont {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 70px;
+        }
+
+        .cont span {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .cont input[type="text"],
+        .cont input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .cont input[type="submit"] {
+            background-color: #12e4c1;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .cont input[type="submit"]:hover {
+            background-color: #0da393;
+        }
+    </style>
+
+</head>
+
+
+
+<body>
+    <section class="container">
+
+        <div class="header">
+            <div id="header" class="header-content">
+                <p class="title">Decentralized Voting System</p>
+                <button id="button" onclick="connectMetamask()">Connect Metamask</button>
+            </div>
+        </div>
+
+        <div class="cont">
+            <form method="POST" action="/vote" enctype="multipart/form-data">
+                <span>Add candidate here</span>
+                <input type="text" name="vote" placeholder="Add name of candidate ... ">
+                <input type="submit" value="Add Candidate">
+            </form>
+        </div>
+
+
+        <div class="card-container"></div>
+
+        <div id="finish"></div>
+
+
+        <footer>
+            <p>&copy; 2023 Voting Decentralized APP</p>
+        </footer>
+    </section>
+    <script src="main.js"></script>
+    <script src="https://cdn.ethers.io/lib/ethers-5.7.1.umd.min.js" type="application/javascript"></script>
+</body>
+
+
+</html>
