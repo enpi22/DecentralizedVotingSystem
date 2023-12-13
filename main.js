@@ -1,5 +1,5 @@
 let WALLET_CONNECTED = "";
-let contractAddress = "0x29f5e50dE427aD8f684692bFf8ABe6551e1f1cC0";
+let contractAddress = "0xA3Ab6CaF05Fe9C401D828bC21e12f13D9379ef94";
 let contractAbi = [
   {
     "inputs": [
@@ -230,9 +230,9 @@ const updateRemainingTime = async () => {
     const remainingTimeElement = document.getElementById("remainingTime");
     const remaining = document.getElementById("remaining");
     const remainingTimeInSeconds = await contractInstance.getRemainingTime();
-    console.log(remainingTimeInSeconds);
+    // console.log(remainingTimeInSeconds);
 
-    remainingTimeElement.textContent = ` ${parseInt(remainingTimeInSeconds, 16)}`;
+    remainingTimeElement.textContent = formatRemainingTime(remainingTimeInSeconds);
     remaining.textContent = "Remaining";
   }
 }
@@ -240,9 +240,8 @@ const formatRemainingTime = (timeInSeconds) => {
   const days = Math.floor(timeInSeconds / (3600 * 24));
   const hours = Math.floor((timeInSeconds % (3600 * 24)) / 3600);
   const minutes = Math.floor((timeInSeconds % 3600) / 60);
-  const seconds = timeInSeconds % 60;
 
-  return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  return `${days}d ${hours}h ${minutes}m`;
 
 }
 
