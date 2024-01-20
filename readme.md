@@ -3,13 +3,13 @@
 2. Users can vote for the candidates once they have connected their metamask accounts. <br>
 3. Options to add candidates after the contract has been deployed. <br>
 
-## Installation:
+### Installation:
 Clone this repository and complete the following installations,
 ```
 npm install
 ```
 
-## Deploy and run the application:
+### Deploy and run the application:
 1. Create a .env file with the following variables and assign their values,
 ```
 API_KEY
