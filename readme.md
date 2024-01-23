@@ -22,7 +22,7 @@ CONTRACT_ADDRESS
 npx hardhat compile
 npx hardhat run --network sepolia scripts/deploy.js
 ```
-4. Replace the contractAddress (optained after deploying) in main.js . <br>
+4. Replace the contractAddress (optained after deploying) in main.js and .env files. <br>
 5. Run the application using,
 ```
 npm start
